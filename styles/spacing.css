@@ -1,0 +1,21 @@
+.mx-1 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.mx-2 {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.my-2 {
+    margin: 2rem auto;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-8 {
+    margin-bottom: 8rem;
+}

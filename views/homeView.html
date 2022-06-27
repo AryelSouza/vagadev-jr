@@ -1,0 +1,115 @@
+<section class="homeView">
+    <section class="banner">
+        <section class="main-banner">
+            <div class="owl-carousel owl-theme owl-loaded owl-carousel-grid">
+
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        <div class="main-banner-item owl-item" v-for="item in model.mainPageModel.banner.mainBanner.list">
+                            <picture class="main-banner-item-picture">
+                                <source v-bind:srcset="item.image.desktopURL" media="(min-width: 769px)">
+                                <img class="img" v-bind:src="item.image.mobileURL" alt="">
+                            </picture>
+                            <div class="main-banner-item-description">
+                                <p class="main-banner-item-description-title">{{item.title}}</p>
+                                <p class="main-banner-item-description-price">
+                                    <span class="main-banner-item-description-price-reais">R${{formatPriceReais(item.price)}}</span>
+                                    <span class="main-banner-item-description-price-centavos">,{{formatPriceCentavos(item.price)}}</span>
+                                </p>
+                                <p>{{item.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="owl-nav-custom">
+                    <div class="owl-nav-custom-left">
+                        <p>{{owlCarousel.currentItem.title}}</p>
+                        <hr>
+                    </div>
+                    <div class="owl-nav-custom-right">
+                        <div class="swiperIndex">{{owlCarousel.currentItem.index + 1}} / {{owlCarousel.size}}</div>
+                        <div class="owl-nav-custom-buttons-prev-next-container">
+                            <div class="owl-nav-custom-button-prev">
+                                <span class="btn-icon"><img src="assets/svgs/angle-left-solid.svg" alt="" class="svg-color-white" width="14" id="btn-close-modal-box-request-sussess"></span>
+                            </div>
+                            <div class="owl-nav-custom-button-next">
+                                <span class="btn-icon"><img src="assets/svgs/angle-right-solid.svg" alt="" class="svg-color-white" width="14" id="btn-close-modal-box-request-sussess"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="middle-banner container">
+            <div class="middle-banner-item" v-for="item in model.mainPageModel.banner.middleBanner.list">
+                <a v-bind:href="item.targetURL" class="middle-banner-item-image">
+                    <img v-bind:src="item.imageURL" alt="" class="img img-strech">
+                </a>
+                <div class="middle-banner-item-content">
+                    <div class="middle-banner-item-content-left">
+                        <p>{{item.title}}</p>
+                    </div>
+                    <div class="middle-banner-item-content-right">
+                        <hr class="hr-dark block">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="container mb-8">
+        <section class="contents containe">
+            <div class="title my-2">
+                <img class="img" src="assets/img/group.png" alt="">
+                <h1>Produtos em destaque</h1>
+            </div>
+            <div class="card-list-container">
+                <button v-on:click="onClickcardListContainerLeftButton" class="card-list-container-btn-left hide-md">
+                    <img src="assets/svgs/angle-left-solid.svg" alt="">
+                </button>
+                <button v-on:click="onClickcardListContainerRightButton" class="card-list-container-btn-right hide-md">
+                    <img src="assets/svgs/angle-right-solid.svg" alt="">
+                </button>
+                <div class="card-list hide-md">
+                    <div class="card" v-for="item in featuredProductsSingle.list">
+                        <a v-bind:href="item.targetURL">
+                            <img class="img" v-bind:src="item.imageURL" alt="">
+                        </a>
+                        <div class="card-content">
+                            <p>{{item.title}}</p>
+                            <p class="card-content-price"><b>R${{item.price}}</b></p>
+                            <div class="mx-1">
+                                <button class="btn btn-primary block btn-buy" v-on:click="onClickBtnBuy(item)" v-if="!itemIsInCart(item)"><b>COMPRAR</b></button>
+                                <button class="btn btn-primary block btn-blocked btn-bought" v-if="itemIsInCart(item)">
+                                    <b>COMPRADO!</b>
+                                    <img src="assets/img/image_6-removebg-preview 1.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-list hide-sm">
+                    <div class="card" v-for="item in model.mainPageModel.featuredProducts.list">
+                        <a v-bind:href="item.targetURL">
+                            <img class="img" v-bind:src="item.imageURL" alt="">
+                        </a>
+                        <div class="card-content">
+                            <p>{{item.title}}</p>
+                            <p class="card-content-price"><b>R${{item.price}}</b></p>
+                            <div class="mx-1">
+                                <button class="btn btn-primary block btn-buy" v-on:click="onClickBtnBuy(item)" v-if="!itemIsInCart(item)"><b>COMPRAR</b></button>
+                                <button class="btn btn-primary block btn-blocked btn-bought" v-if="itemIsInCart(item)">
+                                    <b>COMPRADO!</b>
+                                    <img src="assets/img/image_6-removebg-preview 1.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N1 RUSH</title>
+
+<!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Carousel -->
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/assets/owl.theme.default.min.css">
+    <script src="plugins/OwlCarousel2-2.3.4/owl.carousel.min.js"></script>
+
+<!-- VUEJS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+
+<!-- CSS -->
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/spacing.css">
+    <link rel="stylesheet" href="styles/svgs.css">
+
+    
+</head>
+
+<body>
+    <div id="app" class="body-site">
+        <div class="modal" style="display:none;">
+            <div class="modal-box modal-box-request-sussess">
+                <div class="nav-menu-button-btn-close">
+                    <span class="btn-icon"><img src="assets/svgs/close_btn.svg" alt="" class="" width="52" id="btn-close-modal-box-request-sussess"></span>
+                </div>
+                <div class="nav-menu-button-left-hr">
+                    <hr class="hr-dark block">
+                </div>
+                <div class="nav-menu-button-right-hr">
+                    <hr class="hr-dark block">
+                </div>
+                <p class="modal-box-request-sussess-title">Pedido realizado com sucesso!</p>
+                <img class="img" src="assets/img/image 6.png" alt="" width="217">
+            </div>
+        </div>
+        <header>
+            <section class="container header-container">
+                <div class="nav-left">
+                    <ul>
+                        <li class="nav-menu-button center">
+                            <span class="cursor-pointer" id="nav-menu-button-open"><img src="assets/svgs/icon_hamburguer.svg" alt="" class="svg-color-white" width="40"></span>
+                            <span class="cursor-pointer" id="nav-menu-button-close" style="display:none;"><img src="assets/img/close.png" alt="" class="svg-color-white"></span>
+                            <ul class="nav-menu" style="display:none;">
+                                <div class="background-container"></div>
+                                <div class="pointer-container">
+                                    <div class="pointer hide-sm"></div>
+                                </div>
+                                <li v-for="item in model.navModel.navMenu.list">
+                                    <ul>
+                                        <li>
+                                            <h3>{{item.title}}</h3>
+                                        </li>
+                                        <br>
+                                        <li v-for="i in item.list"><a v-bind:href="i.targetUrl">{{i.title}}</a></li>
+                                        <li class="hide-md">
+                                            <hr class="hr-black">
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'home' }"><img class="" src="assets/img/logo_N1_Rush_fundo_escuro_bg_tranparente_1.png" alt=""></router-link>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-client-menu">
+                    <ul>
+                        <li>
+                            <router-link :to="{ name: 'contact' }" class="nav-client-menu-icon">
+                                <img src="assets/svgs/paper-plane.svg" alt="" class="svg-color-white">
+                            </router-link>
+                            <router-link :to="{ name: 'contact' }" class="hide-sm">CONTATO</router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'search' }" class="nav-client-menu-icon">
+                                <img src="assets/svgs/search-solid.svg" alt="" class="svg-color-white">
+                            </router-link>
+                            <router-link :to="{ name: 'search' }" class="hide-sm">BUSCAR</router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'cart' }" class="">
+                                <img src="assets/svgs/shopping-bag-solid.svg" alt="" class="svg-color-white">
+                            </router-link>
+                            <span href="#" class="cart-text tag" id="cart-text">{{cart.list.length}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </header>
+        <main>
+            <router-view v-on:cartadditem="cartAddItem" v-on:cartremoveitem="cartRemoveItem"></router-view>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <img src="assets/img/logo_header 1.png" alt="">
+            </div>
+            <div class="footer-right">
+                <p>Agência N1 - Todos os direitos reservados</p>
+            </div>
+        </footer>
+    </div>
+
+
+<!-- ROUTES -->
+    <script src="components/homeViewComponent.js"></script>
+    <script src="components/contactViewComponent.js"></script>
+    <script src="components/searchViewComponent.js"></script>
+    <script src="components/cartViewComponent.js"></script>
+
+<!-- MODELS -->
+    <script src="models/mainPageModel.js"></script>
+    <script src="models/searchPageModel.js"></script>
+    <script src="models/navModel.js"></script>
+
+<!-- MAIN -->
+    <script src="main.js"></script>
+</body>
+
+</html>
